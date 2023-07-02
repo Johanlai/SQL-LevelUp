@@ -16,6 +16,3 @@ VALUES (
   FROM Customers
   WHERE (FirstName||' '||LastName)='Sam McAdams'),
   '2022-08-12 18:00:00', 5);
-
-
-

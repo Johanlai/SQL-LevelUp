@@ -9,59 +9,17 @@
 
 SELECT *
 FROM Customers
+JOIN Reservations ON Customers.CustomerID = Reservations.CustomerID
 WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-AND CustomerID IN (
-    SELECT *
-    FROM Reservations
-    WHERE DATE(Date) = DATE('2018-06-14')
-);
-
-SELECT *
-FROM Reservations
-WHERE CustomerID in (14,91,99)
-ORDER BY CustomerID
-WHERE CustomerID IN (
-    SELECT *
-    FROM Customers
-    WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-);
-
-SELECT *
-FROM Reservations
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM Customers
-    WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-)
-AND FORMAT(Date, 'MM-dd')='06-14';
-
-SELECT *
-FROM Reservations
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM Customers
-    WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-)
-AND TO_CHAR(Date, 'YYYY-MM-DD') LIKE '%-06-18';
-
-
-SELECT *
-FROM Reservations
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM Customers
-    WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-)
-AND TO_CHAR(Date, 'MM-DD') LIKE '06-18';
-
-SELECT strftime(Date)
-FROM Reservations;
-
-SELECT *
-FROM Reservations
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM Customers
-    WHERE LastName IN ('Stevensen', 'Stephensen', 'Stevenson', 'Stephenson', 'Stuyvesant')
-)
 AND strftime('%m-%d', Date) = '06-18';
+-- Doesnt come up with anything because the reservation
+-- is not for today but following few days
+
+SELECT *
+FROM Customers
+JOIN Reservations ON Customers.CustomerID = Reservations.CustomerID
+WHERE LastName LIKE 'St%'
+AND PartySize = 4
+AND Date>DATE('2022-06-14')
+ORDER BY Date DESC;
+

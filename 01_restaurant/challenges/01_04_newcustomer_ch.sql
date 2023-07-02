@@ -11,5 +11,3 @@ VALUES ('Anna','Smith','asmith@samoca.org','479 Lapis Dr.',
 'Memphis','TN','555 555-1212','1973-7-21');
 
 SELECT * FROM Customers ORDER BY CustomerID DESC
-
-DELETE from Customers WHERE CustomerID>101
