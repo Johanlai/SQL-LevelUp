@@ -21,5 +21,5 @@ JOIN Reservations ON Customers.CustomerID = Reservations.CustomerID
 WHERE LastName LIKE 'St%'
 AND PartySize = 4
 AND Date>DATE('2022-06-14')
-ORDER BY Date DESC;
+ORDER BY Reservations.Date DESC;
 
